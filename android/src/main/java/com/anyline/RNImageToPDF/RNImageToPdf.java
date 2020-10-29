@@ -70,10 +70,10 @@ public class RNImageToPdf extends ReactContextBaseJavaModule {
                 Bitmap bmp = getImageFromFile(images.getString(idx));
 
                 // resize
-                bmp = resize(bmp, maxWidth, maxHeight);
+                // bmp = resize(bmp, maxWidth, maxHeight);
 
                 // compress
-                bmp = compress(bmp, quality);
+                // bmp = compress(bmp, quality);
 
                 PageInfo pageInfo = new Builder(bmp.getWidth(), bmp.getHeight(), 1).create();
 
@@ -136,7 +136,7 @@ public class RNImageToPdf extends ReactContextBaseJavaModule {
         if (quality <= 0 || quality >= 100) return bmp;
 
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bmp.compress(Bitmap.CompressFormat.JPEG, quality, stream);
+        bmp.compress(Bitmap.CompressFormat.PNG, quality, stream);
         byte[] byteArray = stream.toByteArray();
         stream.close();
         return BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
